@@ -26,7 +26,6 @@ export class CreateUserController implements ICreateUserController {
         }
       }
 
-      //vereficar se o email é válido
       const emailIsValid = validator.isEmail(httpRequest.body!.email);
 
       if (!emailIsValid) {
