@@ -1,12 +1,8 @@
 import { User } from "../../models/users";
-import { HttpRequest, HttpResponse } from "../protocols";
-import {
-  IUpdateUserController,
-  IUpdateUserRepository,
-  UpdateUserParams,
-} from "./protocols";
+import { HttpRequest, HttpResponse, IController } from "../protocols";
+import { IUpdateUserRepository, UpdateUserParams } from "./protocols";
 
-export class UpdateUserController implements IUpdateUserController {
+export class UpdateUserController implements IController {
   constructor(private readonly updateUserRepository: IUpdateUserRepository) {}
 
   async handle(
@@ -15,6 +11,13 @@ export class UpdateUserController implements IUpdateUserController {
     try {
       const id = httpRequest?.params?.id;
       const body = httpRequest?.body;
+
+      if (!body) {
+        return {
+          statusCode: 400,
+          body: "Missing fields",
+        };
+      }
 
       if (!id) {
         return {
@@ -28,7 +31,7 @@ export class UpdateUserController implements IUpdateUserController {
         "password",
       ];
 
-      const someFieldIsNotAllowedtoUpdate = Object.keys(body).some(
+      const someFieldIsNotAllowedtoUpdate = Object.keys(body!).some(
         (key) => !allowedFieldsToUpdate.includes(key as keyof UpdateUserParams)
       );
 
