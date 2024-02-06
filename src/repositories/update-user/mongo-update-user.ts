@@ -6,10 +6,11 @@ import {
 } from "../../controllers/update-user/protocols";
 import { MongoClient } from "../../database/mongo";
 import { User } from "../../models/users";
+import { MongoUser } from "../mongo-protocols";
 
 export class MongoUpdateUserRepository implements IUpdateUserRepository {
-  async update(id: string, params: UpdateUserParams): Promise<User> {
-    await MongoClient.db.collection("user").updateOne(
+  async updateUser(id: string, params: UpdateUserParams): Promise<User> {
+    await MongoClient.db.collection("users").updateOne(
       { _id: new ObjectId(id) },
       {
         $set: {
@@ -19,7 +20,7 @@ export class MongoUpdateUserRepository implements IUpdateUserRepository {
     );
 
     const user = await MongoClient.db
-      .collection<Omit<User, "id">>("users")
+      .collection<MongoUser>("users")
       .findOne({ _id: new ObjectId(id) });
 
     if (!user) {

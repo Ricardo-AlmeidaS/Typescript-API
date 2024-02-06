@@ -1,12 +1,12 @@
 export interface HttpResponse<T> {
-  statusCode: number;
+  statusCode: HttpstatusCode;
   body: T;
 }
 
 export interface HttpRequest<B> {
   params?: any;
   headers?: any;
-  body: B;
+  body?: B;
 }
 
 export enum HttpstatusCode {
