@@ -8,5 +8,5 @@ export interface CreateUserParams {
 }
 
 export interface ICreateUserRepository {
-  createUsers(params: CreateUserParams): Promise<User>;
+  createUser(params: CreateUserParams): Promise<User>;
 }

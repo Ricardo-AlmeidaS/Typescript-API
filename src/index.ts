@@ -7,8 +7,8 @@ import { MongoCreateUserRepository } from "./repositories/create-user/mongo-crea
 import { CreateUserController } from "./controllers/create-user/create-user";
 import { MongoUpdateUserRepository } from "./repositories/update-user/mongo-update-user";
 import { UpdateUserController } from "./controllers/update-user/update-user";
-import { DeleteUserController } from "./controllers/delete-user/delete-user";
 import { MongoDeleteUserRepository } from "./repositories/delete-user/mongo-delete-user";
+import { DeleteUserController } from "./controllers/delete-user/delete-user";
 
 const main = async () => {
   config();
@@ -43,11 +43,11 @@ const main = async () => {
     res.status(statusCode).send(body);
   });
 
-  app.patch("/user/:id", async (req, res) => {
-    const mongoUpdateUsersRepository = new MongoUpdateUserRepository();
+  app.patch("/users/:id", async (req, res) => {
+    const mongoUpdateUserRepository = new MongoUpdateUserRepository();
 
     const updateUserController = new UpdateUserController(
-      mongoUpdateUsersRepository
+      mongoUpdateUserRepository
     );
 
     const { body, statusCode } = await updateUserController.handle({
@@ -58,11 +58,11 @@ const main = async () => {
     res.status(statusCode).send(body);
   });
 
-  app.delete("/user/:id", async (req, res) => {
-    const mongoDeleteUsersRepository = new MongoDeleteUserRepository();
+  app.delete("/users/:id", async (req, res) => {
+    const mongoDeleteUserRepository = new MongoDeleteUserRepository();
 
     const deleteUserController = new DeleteUserController(
-      mongoDeleteUsersRepository
+      mongoDeleteUserRepository
     );
 
     const { body, statusCode } = await deleteUserController.handle({
@@ -74,7 +74,7 @@ const main = async () => {
 
   const port = process.env.PORT || 8000;
 
-  app.listen(port, () => console.log(`escutando na porta ${port}!`));
+  app.listen(port, () => console.log(`listening on port ${port}!`));
 };
 
 main();

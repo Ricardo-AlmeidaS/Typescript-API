@@ -1,5 +1,5 @@
 export interface HttpResponse<T> {
-  statusCode: HttpstatusCode;
+  statusCode: HttpStatusCode;
   body: T;
 }
 
@@ -9,9 +9,9 @@ export interface HttpRequest<B> {
   body?: B;
 }
 
-export enum HttpstatusCode {
+export enum HttpStatusCode {
   OK = 200,
-  CREATE = 201,
+  CREATED = 201,
   BAD_REQUEST = 400,
   SERVER_ERROR = 500,
 }
