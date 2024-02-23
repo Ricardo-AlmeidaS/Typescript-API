@@ -48,12 +48,6 @@ User {
 
 ![Architecture](https://imgur.com/k5mXFoZ.png)
 
+## License
 
-
-
-
-
-
-
-
-
+This project is licensed under the MIT License.
