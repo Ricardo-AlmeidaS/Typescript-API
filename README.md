@@ -19,6 +19,7 @@ Only the back-end of the project was developed, and for its testing, Postman was
 
 ## Concepts utilized
 
+- CRUD
 - SOLID
 - Dependency Injection
 - Repository pattern
